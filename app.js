@@ -7,7 +7,7 @@ const phrases = [
 ];
 const overlay = document.getElementById('overlay');
 const keyboard = document.getElementById('qwerty');
-const phrase = document.getElementById('phrase');
+const phraseDisplay = document.querySelector('#phrase ul');
 const startButton = document.querySelector('.btn__reset');
 let missed = 0;
 
@@ -20,9 +20,20 @@ startButton.addEventListener('click', () => {
 
 // Pick a random phrase
 
-function getRandomPhrase(arr) {
+
+const getRandomPhraseAsArray = arr => {
     const randomIndex = Math.floor(Math.random() * arr.length);
     return arr[randomIndex].split('');
 }
 
-console.log(getRandomPhrase(phrases));
+// Adds the letters of a string to the display
+
+// Check if a letter is in the phrase
+
+// Check if the game has been won or lost
+
+// Hide the overlay and reset game
+
+// Listen for the start game button to be pressed
+
+// Listen for the onscreen keyboard to be clicked
