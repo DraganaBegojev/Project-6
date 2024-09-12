@@ -1,19 +1,17 @@
 const phrases = [
-    "swedes are one of the biggest consumers of candy in the world",
-    "norway has a rich viking history",
-    "sweden has more moose per square kilometre than any other country",
-    "the sauna is an integral part of finnish life",
-    "the first ice hotel was built in sweden"
+    "snow is white",
+    "greece is sunny",
+    "programming is fun",
+    "javascript is handy",
+    "hello world"
 ];
 const overlay = document.getElementById('overlay');
 const keyboard = document.getElementById('qwerty');
 const phraseDisplay = document.querySelector('#phrase ul');
 const startButton = document.querySelector('.btn__reset');
 let missed = 0;
-
-//Start game
-
-
+const maxGuesses = 5;
+let activePhrase = '';
 
 
 // Pick a random phrase
@@ -36,8 +34,8 @@ const addPhraseToDisplay = arr => {
         } else {
             li.classList.add('letter');
         }
+        phraseDisplay.appendChild(li);
     }
-    phraseDisplay.appendChild(li);
 }
 
 // Check if a letter is in the phrase
@@ -46,10 +44,16 @@ const addPhraseToDisplay = arr => {
 
 // Hide the overlay and reset game
 
+const hideOverlay = () => {
+    overlay.style.display = 'none';
+}
+
 // Listen for the start game button to be pressed
 
 startButton.addEventListener('click', () => {
-    overlay.style.display = 'none';
+    hideOverlay();
+    activePhrase = getRandomPhraseAsArray(phrases);
+    addPhraseToDisplay(activePhrase);
 });
 
 // Listen for the onscreen keyboard to be clicked
