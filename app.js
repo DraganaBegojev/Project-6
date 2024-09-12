@@ -14,9 +14,7 @@ let missed = 0;
 //Start game
 
 
-startButton.addEventListener('click', () => {
-    overlay.style.display = 'none';
-});
+
 
 // Pick a random phrase
 
@@ -28,6 +26,20 @@ const getRandomPhraseAsArray = arr => {
 
 // Adds the letters of a string to the display
 
+const addPhraseToDisplay = arr => {
+    phraseDisplay.innerHTML = '';
+    for(let i = 0; i < arr.length; i++) {
+        const li = document.createElement('li');
+        li.textContent = arr[i];
+        if(arr[i] === ' ') {
+            li.classList.add('space');
+        } else {
+            li.classList.add('letter');
+        }
+    }
+    phraseDisplay.appendChild(li);
+}
+
 // Check if a letter is in the phrase
 
 // Check if the game has been won or lost
@@ -35,5 +47,9 @@ const getRandomPhraseAsArray = arr => {
 // Hide the overlay and reset game
 
 // Listen for the start game button to be pressed
+
+startButton.addEventListener('click', () => {
+    overlay.style.display = 'none';
+});
 
 // Listen for the onscreen keyboard to be clicked
