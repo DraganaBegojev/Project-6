@@ -40,6 +40,32 @@ const addPhraseToDisplay = arr => {
 
 // Check if a letter is in the phrase
 
+const checkLetter = button => {
+    let match = null; 
+    const letters = document.querySelectorAll('.letter'); 
+    for (let i = 0; i < letters.length; i++) {
+        if (letters[i].textContent.toLowerCase() === button.textContent.toLowerCase()) {
+            letters[i].classList.add('show'); 
+            match = button.textContent; 
+        }
+    }
+    
+    return match; 
+};
+
+
+// Listen for the onscreen keyboard to be clicked
+
+keyboard.addEventListener('click', (e) => {
+    if(e.target.tagName === 'BUTTON'){
+        const button = e.target;
+        button.classList.add('chosen');
+        button.disabled = true;
+        const letterFound = checkLetter(button);
+        console.log(letterFound);
+    }
+});
+
 // Check if the game has been won or lost
 
 // Hide the overlay and reset game
@@ -55,5 +81,3 @@ startButton.addEventListener('click', () => {
     activePhrase = getRandomPhraseAsArray(phrases);
     addPhraseToDisplay(activePhrase);
 });
-
-// Listen for the onscreen keyboard to be clicked
