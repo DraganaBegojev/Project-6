@@ -17,7 +17,6 @@ let activePhrase = '';
 
 // Pick a random phrase
 
-
 const getRandomPhraseAsArray = arr => {
     const randomIndex = Math.floor(Math.random() * arr.length);
     return arr[randomIndex].split('');
@@ -70,27 +69,35 @@ keyboard.addEventListener('click', (e) => {
         // Check if the letter was not found
         if(letterFound === null) {
             missed++;
-            hearts[maxGuesses - missed].src = 'images/lostHeart.png'; // Replace liveHeart with lostHeart
+            updateHearts();
         }
         checkWin();  
     }
 });
 
+// Function to replace liveHeart with lostHeart
+function updateHearts() {
+    hearts[maxGuesses - missed].src = 'images/lostHeart.png'; 
+}
+
 // Check if the game has been won or lost
 
-const checkWin = () => {
+function checkWin() {
     const revealedLetters = document.querySelectorAll('.show').length;
     const totalLetters = document.querySelectorAll('.letter').length;
 
     if (revealedLetters === totalLetters) {
-        overlay.classList.add('win');
-        overlay.style.display = 'flex';
-        overlay.querySelector('.title').textContent = 'Congratulations, You Win!';
+        showOverlay('win', 'Congratulations, You Win!');
     } else if (missed >= maxGuesses) {
-        overlay.classList.add('lose');
-        overlay.style.display = 'flex';
-        overlay.querySelector('.title').textContent = 'Sorry, You Lost!';
+        showOverlay('lose', 'Sorry, You Lost!');
     }
+}
+
+// Function to show the overlay with win/lose message
+function showOverlay(className, message) {
+    overlay.classList.add(className);
+    overlay.style.display = 'flex'
+    overlay.querySelector('.title').textContent = message;
 }
 
 // Hide the overlay
