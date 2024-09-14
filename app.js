@@ -9,6 +9,7 @@ const overlay = document.getElementById('overlay');
 const keyboard = document.getElementById('qwerty');
 const phraseDisplay = document.querySelector('#phrase ul');
 const startButton = document.querySelector('.btn__reset');
+const hearts = document.querySelectorAll('.tries img'); 
 let missed = 0;
 const maxGuesses = 5;
 let activePhrase = '';
@@ -57,16 +58,27 @@ const checkLetter = button => {
 // Listen for the onscreen keyboard to be clicked
 
 keyboard.addEventListener('click', (e) => {
-    if(e.target.tagName === 'BUTTON'){
-        const button = e.target;
+    if(e.target.tagName === 'BUTTON'){ // Check if the clicked element is a button
+        const button = e.target;   // Get the clicked button
+        // Add 'chosen' class to the button
         button.classList.add('chosen');
+        // Disable the button to prevent it from being clicked again
         button.disabled = true;
+        // Pass the button to the checkLetter function
         const letterFound = checkLetter(button);
-        console.log(letterFound);
+
+        // Check if the letter was not found
+        if(letterFound === null) {
+            missed++;
+            hearts[maxGuesses - missed].src = 'images/lostHeart.png'; // Replace liveHeart with lostHeart
+        }
+        
     }
 });
 
 // Check if the game has been won or lost
+
+
 
 // Hide the overlay and reset game
 
