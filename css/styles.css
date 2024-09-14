@@ -92,9 +92,23 @@ button {
   width: 15px;
 }
 
+
 .show {
   color: #000;
   background-color: #76CE82;
+  transition: all 0.3s ease-in-out;
+  animation: letterReveal 0.4s forwards;
+}
+
+@keyframes letterReveal {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 /* Keyboard */
@@ -148,6 +162,7 @@ button {
 
 .win {
   background-color: var(--color-win);
+  z-index: 1;
 }
 
 .win a {
@@ -156,6 +171,7 @@ button {
 
 .lose {
   background-color: var(--color-lose);
+  z-index: 1;
 }
 
 .lose a {
