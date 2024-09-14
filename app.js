@@ -72,17 +72,30 @@ keyboard.addEventListener('click', (e) => {
             missed++;
             hearts[maxGuesses - missed].src = 'images/lostHeart.png'; // Replace liveHeart with lostHeart
         }
-        
+        checkWin();  
     }
 });
 
 // Check if the game has been won or lost
 
+const checkWin = () => {
+    const revealedLetters = document.querySelectorAll('.show').length;
+    const totalLetters = document.querySelectorAll('.letter').length;
 
+    if (revealedLetters === totalLetters) {
+        overlay.classList.add('win');
+        overlay.style.display = 'flex';
+        overlay.querySelector('.title').textContent = 'Congratulations, You Win!';
+    } else if (missed >= maxGuesses) {
+        overlay.classList.add('lose');
+        overlay.style.display = 'flex';
+        overlay.querySelector('.title').textContent = 'Sorry, You Lost!';
+    }
+}
 
-// Hide the overlay and reset game
+// Hide the overlay
 
-const hideOverlay = () => {
+function hideOverlay() {
     overlay.style.display = 'none';
 }
 
