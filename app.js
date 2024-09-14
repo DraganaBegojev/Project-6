@@ -57,7 +57,7 @@ const checkLetter = button => {
 // Listen for the onscreen keyboard to be clicked
 
 keyboard.addEventListener('click', (e) => {
-    if(e.target.tagName === 'BUTTON'){ // Check if the clicked element is a button
+    if(e.target.tagName === 'BUTTON' && !e.target.disabled){ // Check if the clicked element is a button
         const button = e.target;   // Get the clicked button
         // Add 'chosen' class to the button
         button.classList.add('chosen');
@@ -98,18 +98,32 @@ function showOverlay(className, message) {
     overlay.classList.add(className);
     overlay.style.display = 'flex'
     overlay.querySelector('.title').textContent = message;
+    startButton.textContent = 'Reset Game';
 }
 
 // Hide the overlay
 
 function hideOverlay() {
     overlay.style.display = 'none';
+    overlay.classList.remove('win', 'lose'); 
 }
 
 // Listen for the start game button to be pressed
 
 startButton.addEventListener('click', () => {
     hideOverlay();
+    resetGame();
     activePhrase = getRandomPhraseAsArray(phrases);
     addPhraseToDisplay(activePhrase);
 });
+
+function resetGame() {
+    missed = 0;
+    phraseDisplay.innerHTML = '';
+    hearts.forEach(heart => heart.src = 'images/liveHeart.png');
+    const buttons = keyboard.querySelectorAll('button');
+    buttons.forEach(button => {
+        button.disabled = false;
+        button.classList.remove('chosen');
+    });
+}
