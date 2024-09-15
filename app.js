@@ -95,17 +95,19 @@ function checkWin() {
 
 // Function to show the overlay with win/lose message
 function showOverlay(className, message) {
-    overlay.classList.add(className);
-    overlay.style.display = 'flex'
-    overlay.querySelector('.title').textContent = message;
-    startButton.textContent = 'Reset Game';
+    setTimeout(() => {
+        overlay.classList.add(className);
+        overlay.style.display = 'flex'
+        overlay.querySelector('.title').textContent = message;
+        startButton.textContent = 'Reset Game';
+    }, 600); // 0.6-second delay
 }
 
 // Hide the overlay
 
 function hideOverlay() {
     overlay.style.display = 'none';
-    overlay.classList.remove('win', 'lose'); 
+    overlay.classList.remove('win', 'lose', 'start'); 
 }
 
 // Listen for the start game button to be pressed
@@ -116,6 +118,8 @@ startButton.addEventListener('click', () => {
     activePhrase = getRandomPhraseAsArray(phrases);
     addPhraseToDisplay(activePhrase);
 });
+
+// Reset game
 
 function resetGame() {
     missed = 0;
