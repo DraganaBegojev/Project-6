@@ -3,8 +3,24 @@ const phrases = [
     "greece is sunny",
     "programming is fun",
     "javascript is handy",
-    "hello world"
+    "hello world",
+    "life is beautiful",
+    "summer is hot",
+    "coffee is strong",
+    "music is relaxing",
+    "time flies fast",
+    "peace is important",
+    "nature is calming",
+    "dream big always",
+    "coding is fun",
+    "work hard play hard",
+    "love is endless",
+    "friends are gold",
+    "reading is magic",
+    "travel is life",
+    "happiness is free"
 ];
+
 const overlay = document.getElementById('overlay');
 const keyboard = document.getElementById('qwerty');
 const phraseDisplay = document.querySelector('#phrase ul');
