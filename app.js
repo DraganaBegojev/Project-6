@@ -15,10 +15,14 @@ const phrases = [
     "coding is fun",
     "work hard play hard",
     "love is endless",
-    "friends are gold",
+    "crazy scientist",
     "reading is magic",
     "travel is life",
-    "happiness is free"
+    "happiness is free",
+    "secret sgent",
+    "chocolate cake",
+    "summer vacation",
+    "space shuttle"
 ];
 
 const overlay = document.getElementById('overlay');
